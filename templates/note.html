@@ -1,16 +1,10 @@
 {{ define "title" }}Anonymous Self-destructing Notes{{ end }}
 
 {{ define "content" }}
-<div class="form-group">
-    <label for="secret_note text-danger">
-        This note will be permanently deleted after reading <span class="glyphicon glyphicon-fire text-danger"></span>:
-    </label>
-    <pre id="secret_note" class="hidden"></pre>
-</div>
+<p class="text-danger"><span class="bi bi-file-x text-danger"></span> This note will be permanently deleted after reading. Don't click unless you're ready.</label>
+<pre id="secret_note" style="background-color: #f7f7f7;" class="d-none"></pre>
 <div class="form-group text-center">
-    <button class="btn btn-lg btn-danger" id="fetch-and-decrypt-button">
-        <span class="glyphicon glyphicon-fire small"></span>
-        Read and destroy
-    </button>
+    <button class="btn btn-lg btn-danger" id="fetch-and-decrypt-button"><span class="bi bi-file-earmark-x"></span>Read and destroy</button>
+    <button id="copy-paste-button" class="btn btn-lg btn-primary d-none"><span class="bi bi-clipboard small"></span> Copy</button>
 </div>
 {{ end }}

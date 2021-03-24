@@ -53,8 +53,16 @@ $(document).ready(function() {
     });
 
     // Copy to buffer
-    $("button#copy-button").click(function(event) {
+    $("button#copy-link-button").click(function(event) {
         SelectText("secret_link");
+        // TODO: Show feedback to user
+        document.execCommand('copy');
+        event.preventDefault();
+    });
+
+    // Copy paste to buffer
+    $("button#copy-paste-button").click(function(event) {
+        SelectText("secret_note");
         // TODO: Show feedback to user
         document.execCommand('copy');
         event.preventDefault();
@@ -76,6 +84,7 @@ $(document).ready(function() {
                 $("#secret_note").text(decrypted);
                 $("#secret_note").removeClass("d-none");
                 $("button#fetch-and-decrypt-button").addClass("d-none");
+                $("button#copy-paste-button").removeClass("d-none");
             },
             error: function (err) {
                 window.alert(err.responseText);

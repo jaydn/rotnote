@@ -4,30 +4,21 @@
 <!-- Warning -->
 <noscript>
     <div id="warn" class="alert alert-danger" role="alert">
-        <strong>Warning!</strong> You must enable JavaScript because all encryption going inside web browser.
+        Unfortunately this site requires Javascript. All cryptography is done in the browser - so it would be unsafe to have a non-Javascript version. Please enable Javascript.
     </div>
 </noscript>
 
 <!-- Main form -->
-<div id="main" class="hidden">
+<div id="main" class="d-none">
     <form id="note" action="/note" method="post">
         {{ .csrfField }}
         <div class="form-group">
-            <label for="note">
-                Write your note below
-                <span class="glyphicon glyphicon-edit small"></span>:
-            </label>
             <textarea class="form-control" name="body" cols="80" rows="4"></textarea>
-            <p class="help-block">
-                Text will be encrypted with
-                <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-256</a>
-                <span class="glyphicon glyphicon-lock small"></span>
-                algorithm and secret (generated on client-side).
-            </p>
+            <p class="help-block">Notes get encrypted with <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-256</a><span class="bi bi-lock"></span> inside your browser. Secret generated on client-side, never sent to server.</p>
         </div>
         <div class="form-group text-center">
             <button type="submit" class="btn btn-lg btn-success">
-                <span class="glyphicon glyphicon-ok small"></span>
+                <span class="bi bi-key"></span>
                 Encrypt note
             </button>
         </div>
@@ -35,16 +26,13 @@
 </div>
 
 <!-- Secret link -->
-<div id="done" class="hidden">
-    <div class="form-group">
+<div id="done" class="d-none">
+    <div>
         <label for="secret_link">Your secret message available on the link:</label>
         <pre id="secret_link"></pre>
     </div>
-    <div class="form-group text-center">
-        <a href="#" class="btn btn-lg btn-primary">
-            <span class="glyphicon glyphicon-file small"></span>
-            Copy to buffer
-        </a>
+    <div class="text-center">
+        <button id="copy-link-button" class="btn btn-lg btn-primary"><span class="bi bi-clipboard small"></span> Copy</button>
     </div>
 </div>
 {{ end }}
