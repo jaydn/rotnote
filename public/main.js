@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 $(document).ready(function() {
-    $("#main").removeClass("hidden");
+    $("#main").removeClass("d-none");
     $("#warn").remove();
 
     // Submit new secret note
@@ -41,8 +41,8 @@ $(document).ready(function() {
                 let link = window.location.href.toString() + id + "#" + secret;
                 $("#secret_link").text(link);
                 $("a", "#done").first().attr("href", link);
-                $("#note").addClass("hidden");
-                $("#done").removeClass("hidden");
+                $("#note").addClass("d-none");
+                $("#done").removeClass("d-none");
                 SelectText("secret_link");
             },
             error: function (err) {
@@ -53,7 +53,8 @@ $(document).ready(function() {
     });
 
     // Copy to buffer
-    $("a.btn-primary").click(function(event) {
+    $("button#copy-button").click(function(event) {
+        SelectText("secret_link");
         // TODO: Show feedback to user
         document.execCommand('copy');
         event.preventDefault();
@@ -73,8 +74,8 @@ $(document).ready(function() {
                 let cipherText = res;
                 let decrypted = sjcl.decrypt(secret, cipherText);
                 $("#secret_note").text(decrypted);
-                $("#secret_note").removeClass("hidden");
-                $("button#fetch-and-decrypt-button").addClass("hidden");
+                $("#secret_note").removeClass("d-none");
+                $("button#fetch-and-decrypt-button").addClass("d-none");
             },
             error: function (err) {
                 window.alert(err.responseText);
